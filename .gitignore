@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# python setuptools
+broadlink2mqtt.egg-info/
+build/
+dist/
+
