@@ -21,19 +21,6 @@ def execute_command(device, config, machine, command, postsleep=0):
     if postsleep > 0:
         time.sleep(postsleep)
 
-def put_on_humificator(device, config):
-    # precondition: humificador esta apagado
-    execute_command(device, config, 'humificador', 'on', 1)
-    execute_command(device, config, 'humificador', 'timing', 0.120)
-    for _ in range(16):
-        execute_command(device, config, 'humificador', 'light', 0.120)
-    # postcondicion: humificador queda encendido por 2 horas
-
-def put_off_humificator(device, config):
-    # precondition: humificador esta encendido
-    execute_command(device, config, 'humificador', 'on', 1)
-    # postcondicion: humificador queda encendido
-
 if __name__ == '__main__':
     device = get_broadlink_rm()
     print "-- grabando secuencia"

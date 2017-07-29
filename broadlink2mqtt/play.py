@@ -3,10 +3,21 @@ import time
 import ConfigParser
 from broadlink2mqtt.record import get_broadlink_rm
 from broadlink2mqtt.record import execute_command
-from broadlink2mqtt.record import put_on_humificator
-from broadlink2mqtt.record import put_off_humificator
 
 here = os.path.abspath(os.path.dirname(__file__))
+
+def put_on_humificator(device, config):
+    # precondition: humificador esta apagado
+    execute_command(device, config, 'humificador', 'on', 1)
+    execute_command(device, config, 'humificador', 'timing', 0.120)
+    for _ in range(16):
+        execute_command(device, config, 'humificador', 'light', 0.120)
+    # postcondicion: humificador queda encendido por 2 horas
+
+def put_off_humificator(device, config):
+    # precondition: humificador esta encendido
+    execute_command(device, config, 'humificador', 'on', 1)
+    # postcondicion: humificador queda encendido
 
 if __name__ == '__main__':
     device = get_broadlink_rm()
@@ -15,7 +26,9 @@ if __name__ == '__main__':
     put_on_humificator(device, config)
     time.sleep(10)
     put_off_humificator(device, config)
-    # execute_command(device, config, 'tv', 'on', 5)
+    for _ in range(16):
+        execute_command(device, config, 'enchufe', '3on', 1)
+        execute_command(device, config, 'enchufe', '3off', 1)
     # execute_command(device, config, 'movistar', 'guia', 0.5)
 
     # execute_command(device, config, 'movistar', 'b0', 2)
