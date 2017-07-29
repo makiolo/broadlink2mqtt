@@ -32,7 +32,10 @@
 *.app
 
 # python setuptools
+broadlink2mqtt/*.pyc
 broadlink2mqtt.egg-info/
 build/
 dist/
+tests/__pycache__/
+
 
