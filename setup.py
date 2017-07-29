@@ -6,13 +6,21 @@ https://packaging.python.org/en/latest/distributing.html
 https://github.com/pypa/sampleproject
 """
 
+import os
+import pip
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 # To use a consistent encoding
 from codecs import open
 from os import path
+from pip.req import parse_requirements
 
 here = path.abspath(path.dirname(__file__))
+# parse_requirements() returns generator of pip.req.InstallRequirement objects
+install_reqs = parse_requirements(os.path.join(here, 'requirements.txt'), session=pip.download.PipSession())
+# reqs is a list of requirement
+# e.g. ['django==1.5.1', 'mezzanine==1.4.6']
+reqs = [str(ir.req) for ir in install_reqs]
 
 # Get the long description from the relevant file
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
@@ -76,7 +84,8 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['broadlink', 'paho-mqtt'],
+    # using requirements.txt
+    install_requires=reqs,
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
