@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/makiolo/broadlink2mqtt.svg?branch=master)](https://travis-ci.org/makiolo/broadlink2mqtt)
 # broadlink2mqtt (working in progress)
 - This library is useful for serialize your IR/RF codes (encoded in base64) in a config file.
 # futures milestones
