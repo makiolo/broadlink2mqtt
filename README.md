@@ -1,4 +1,4 @@
-# broadlink2mqtt
+# broadlink2mqtt (working in progress)
 - This library is useful for serialize your IR/RF codes (encoded in base64) in a config file.
 # futures milestones
 - Like second objetive, I want associate commands (IR/RF codes serialized) in topics of MQTT.
